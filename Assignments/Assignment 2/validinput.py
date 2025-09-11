@@ -6,15 +6,15 @@ class ValidInput:
     def get_int_input(prompt):
         while True:
             try:
-                uinput = int(input(prompt))
-                return uinput
-            except ValueError:
-                print('Please enter an integer')
+                uinput = int(input(prompt)) # Gets user input and tries to convert to int
+                return uinput # Returns the integer if successful
+            except ValueError: 
+                print('Please enter an integer') # If conversion fails, prompts user again
 
-    def get_int_list_input(prompt):
-        while True:
+    def get_int_list_input(prompt): 
+        while True: 
             try:
-                lst = [int(num) for num in input(prompt).split(',')]
+                lst = [int(num) for num in input(prompt).split(',')] # Gets user input, splits by commas, and tries to convert each to int
                 return lst
             except ValueError:
                 print('Please enter a list of integers.')
