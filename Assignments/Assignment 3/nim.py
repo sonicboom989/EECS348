@@ -1,4 +1,16 @@
-import time
+'''
+Program: EECS 348 Assignment 3
+Description: Terminal Nim game with two players
+Inputs: User terminal input, row number and stars to remove
+Output: Game board state, player prompt, winner message, error messages
+Collaborators: Lucas Root
+Sources: ChatGPT for debugging and testing
+Author: Luke Coffman
+Creation Date: 9/21/25
+'''
+
+
+import time #Used for delaying error messages to make them easier to read
 
 class Nim:
     def __init__(self):
@@ -34,13 +46,13 @@ class Nim:
 
         taking_turn=True
 
-        while taking_turn:
+        while taking_turn: # runs while loop until the turn is done and valid
             print(self)
             if self.is_Playable():
                 try:
                     row = int(input("Enter a row number(1-5): ")) -1 #-1 So the index is lined up
                     stars = int(input("Stars to remove: "))  
-                except ValueError:
+                except ValueError: # Catches and invalid input for row and stars
                     print("Please enter numbers only. \n ") 
                     continue
 
@@ -65,7 +77,7 @@ class Nim:
                     time.sleep(.5)
                     print()
 
-            self.player1 = not self.player1 # Changes player value
+            self.player1 = not self.player1 # Changes player value after a valid move
 
     def __str__(self):
         return "\n".join(f"{i+1}: {elem}" for i,elem in enumerate(self.board)) # Prints a line for each element in an array
