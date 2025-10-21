@@ -5,8 +5,12 @@ int main(){
     int target = 0;
 
     while (1) {
-        printf("Enter the NFL score (Enter 1 to stop): ");
-        scanf("%d", &target);
+        while(1){
+            printf("Enter the NFL score (Enter 1 to stop): ");
+            scanf("%d", &target);
+            if (target > 0){break;}
+            else{printf("INVALID INPUT(Please enter and integet greater than 0)\n");}
+        }
 
         if (target == 1) {
             break;
