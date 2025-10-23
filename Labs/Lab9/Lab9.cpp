@@ -30,6 +30,17 @@ vector<vector<int>> multMatrix(const vector<vector<int>> &a, const vector<vector
     }
     return result;
 }
+void diagonalSum(const vector<vector<int>> &a, int n){
+    int first_sum, sec_sum;
+    for (int i = 0; i < n; ++i){
+        first_sum += a[i][i];
+        sec_sum += a[i][n-1-i];
+    }
+    
+    cout << "Main Diagonal sum: " << first_sum << endl;
+    cout << "Secondary diagonal sum: " << sec_sum << endl;
+
+}
 
 void swapRows(vector<vector<int>> &a, int R1, int R2){
 
@@ -38,6 +49,20 @@ void swapRows(vector<vector<int>> &a, int R1, int R2){
     a[R2] = temp;
 
 }
+void swapCols(vector<vector<int>> &a, int C1, int C2, int n){
+
+    for (int i =0; i < n; ++i){
+        int temp = a[i][C1];
+        a[i][C1] = a[i][C2];
+        a[i][C2] = temp;
+    }
+
+}
+
+void updateValue(vector<vector<int>> &a, int row, int col, int value){
+    a[row][col] = value;
+}
+
 
 
 void printMatrix(const vector<vector<int>> &mtx,int n){
@@ -78,6 +103,9 @@ int main(){
     vector<vector<int>> mult_result = multMatrix(matrix1, matrix2, n);
     printMatrix(mult_result, n);
 
+    diagonalSum(matrix1, n);
+
+
     printf("\nMatrix 1: \n");
     printMatrix(matrix1, n);
     printf("\n \n-Row Swapping-\n");
@@ -90,12 +118,44 @@ int main(){
         cout << "Select row to swap with: ";
         cin >> r2;
         if ((r1 <4 && r1 >=0) && (r2 < 4 && r2>=0)){break;}
-        else{printf("Invalid Input, Please enter a number between 0 and 3");}
+        else{printf("Invalid Input, Please enter a number between 0 and 3\n");}
 
     }
+
     swapRows(matrix1, r1, r2);
     printMatrix(matrix1,n);
 
+    printf("\nMatrix 1: \n");
+    printMatrix(matrix1, n);
+    printf("\n \n-Column Swapping-\n");
+
+    int c1, c2;
+    while (true){
+
+        cout << "Select first column: ";
+        cin >> c1;
+        cout << "Select column to swap with: ";
+        cin >> c2;
+        if ((c1 <4 && c1 >=0) && (c2 < 4 && c2>=0)){break;}
+        else{printf("Invalid Input, Please enter a number between 0 and 3\n");}
+
+    }
+
+    swapCols(matrix1, c1, c2, n);
+    printMatrix(matrix1, n);
+    int row_ind, col_ind, value;
+
+
+    printf("-Change an element in the matrix-");
+    cout << "Enter the row index to change: ";
+    cin >> row_ind;
+    cout << "Enter the column index to change: ";
+    cin >> col_ind;
+    cout << "Enter the updated value: ";
+    cin >> value;
+
+    updateValue(matrix1, row_ind, col_ind, value);
+    printMatrix(matrix1, n);
 
 
 
