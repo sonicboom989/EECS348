@@ -17,9 +17,9 @@ vector<vector<int>> addMatrix(const vector<vector<int>> &a, const vector<vector<
     return result;
 }
 
-vector<vector<int>> multMatrix(const vector<vector<int>> &a, const vector<vector<int>> &b, int n){
+vector<vector<long long>> multMatrix(const vector<vector<int>> &a, const vector<vector<int>> &b, int n){
 
-    vector<vector<int>> result(n, vector<int>(n, 0));
+    vector<vector<long long>> result(n, vector<long long>(n, 0));
     
     for (int i = 0; i <n; i++){
         for (int j = 0; j < n; j++){
@@ -31,7 +31,7 @@ vector<vector<int>> multMatrix(const vector<vector<int>> &a, const vector<vector
     return result;
 }
 void diagonalSum(const vector<vector<int>> &a, int n){
-    int first_sum, sec_sum;
+    long long first_sum, sec_sum =0;
     for (int i = 0; i < n; ++i){
         first_sum += a[i][i];
         sec_sum += a[i][n-1-i];
@@ -60,12 +60,16 @@ void swapCols(vector<vector<int>> &a, int C1, int C2, int n){
 }
 
 void updateValue(vector<vector<int>> &a, int row, int col, int value){
+    if(row < 0 || col < 0 || row >= a.size() || col >= a.size()){
+        cout << "Invalid indices!" << endl;
+        return;
+    }
     a[row][col] = value;
 }
 
 
 
-void printMatrix(const vector<vector<int>> &mtx,int n){
+void printMatrix(const auto& mtx, int n){
 
     for (int i = 0; i < n; i++){
         for (int j = 0; j < n; j++){
@@ -79,7 +83,16 @@ void printMatrix(const vector<vector<int>> &mtx,int n){
 
 
 int main(){
-    ifstream file("input.txt");
+    string filename;
+    cout << "Enter the input filename: ";
+    cin >> filename;
+    
+    ifstream file(filename);
+    if(!file.is_open()){
+        cerr << "Error opening file: " << filename << endl;
+        return 1;
+    }
+
     int n;
     file >> n;
     vector<vector<int>> matrix1(n, vector<int>(n));
@@ -96,11 +109,11 @@ int main(){
     }
     file.close();
 
-    vector<vector<int>> added_result = addMatrix(matrix1, matrix2, n);
+    auto added_result = addMatrix(matrix1, matrix2, n);
     printf("Matrix 1 + Matrix 2: \n");
     printMatrix(added_result, n);
     printf("\nMatrix 1 * Matrix 2: \n");
-    vector<vector<int>> mult_result = multMatrix(matrix1, matrix2, n);
+    auto mult_result = multMatrix(matrix1, matrix2, n);
     printMatrix(mult_result, n);
 
     diagonalSum(matrix1, n);
@@ -117,8 +130,8 @@ int main(){
         cin >> r1;
         cout << "Select row to swap with: ";
         cin >> r2;
-        if ((r1 <4 && r1 >=0) && (r2 < 4 && r2>=0)){break;}
-        else{printf("Invalid Input, Please enter a number between 0 and 3\n");}
+        if ((r1 <n && r1 >=0) && (r2 < n && r2>=0)){break;}
+        else{printf("Invalid Input, Please enter a number between 0 and %c\n", n);}
 
     }
 
@@ -136,7 +149,7 @@ int main(){
         cin >> c1;
         cout << "Select column to swap with: ";
         cin >> c2;
-        if ((c1 <4 && c1 >=0) && (c2 < 4 && c2>=0)){break;}
+        if ((c1 <n && c1 >=0) && (c2 < n && c2>=0)){break;}
         else{printf("Invalid Input, Please enter a number between 0 and 3\n");}
 
     }
