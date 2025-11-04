@@ -44,6 +44,57 @@ bool checkDouble(string d1){
 
 }
 
+string addDouble(string d1, string d2){
+    cout << "Adding " << d1 << " and " << d2 <<endl;
+    
+    int pos1 = d1.find('.');
+    int pos2 = d2.find('.');
+
+    //If there is no .
+    string int1 = (pos1 == npos) ? d1 : d1.substr(0, pos1);
+    string frac1 = (pos1 == npos) ? "" : d1.substr(pos1+1);
+    string int2 = (pos2 == npos) ? d2 : d2.substr(0, pos2);
+    string frac2 = (pos2 == npos) ? "" : d2.substr(pos2+1);
+
+    //Make fractions the same length by putting 0 to the end until they are
+    while (frac1.size() < frac2.size()) frac1.push_back('0');
+    while (frac2.size() < frac1.size()) frac2.push_back('0');
+
+    //Make Int parts equal length
+    while (int1.size() < int2.size()) int1.insert(int1.begin(), '0');
+    while (int2.size() < int1.size()) int2.insert(int2.begin(), '0');
+
+    int carry = 0;
+    string fracResult;
+
+    //Add fractional parts
+    for(int i = frac1.size() -1, i>=0; --i){
+        int sum = (frac1[i] - '0') + (frac2[i] - '0') + carry;
+        carry = sum/10;
+        fracResult.push_back('0' + sum % 10);
+    }
+
+    reverse(fracResult.begin(), fracResult.end());
+
+    string intResult;
+
+    for (int i = int1.size() -1; i >=0; --i){
+        int sum = (int1[i] - '0') + (int2[i] - '0') + carry;
+        carry = sum/10;
+        intResult.push_back('0' + sum % 10)
+    }
+
+    if (carry) intResult.push_back('0' + carry);
+    reverse(intResult.begin(), intResult.end)
+
+    if (fracResult.empty())
+        return intResult;
+    else 
+        return intResult + '.' + fracResult;
+
+
+}   
+
 int main(){
     string filename;
     string line;
@@ -64,6 +115,9 @@ int main(){
             cout << "ERROR: " << d1 << " and/or " << d2 << " is not a double!" << endl;
             continue;;
         }
+
+        //Add function
+        cout << addDouble(d1, d2) << endl;
 
     } 
 
