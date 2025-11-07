@@ -1,21 +1,18 @@
-CC = g++
-CFLAGS = -std=c++17 -O2 -Wall -Wextra -g
-SRC = Lab9.cpp
-OBJ = $(SRC:.cpp=.o)
-EXE = Lab9.exe
+CXX       := g++
+CXXFLAGS  := -std=c++17 -Wall -Wextra -Wpedantic -O2
+LDFLAGS   :=
 
-.PHONY: all clean run
+TARGET    := Lab9
+SRC       := Lab9.cpp
 
-all: $(EXE)
 
-$(EXE): $(OBJ)
-    $(CC) $(CFLAGS) -o $@ $^
+all: $(TARGET)
 
-%.o: %.cpp
-    $(CC) $(CFLAGS) -c $< -o $@
 
-run: $(EXE)
-    .\$(EXE) < input.txt
+$(TARGET): $(SRC)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 clean:
-    rm -f $(OBJ) $(EXE)
+	rm -f $(TARGET)
+
+.PHONY: all run debug clean format

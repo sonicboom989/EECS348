@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "string_view": "cpp",
+        "bitset": "cpp",
+        "string": "cpp"
+    }
+}

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.embeddedhtml": "html",
-        "random": "cpp"
+        "random": "cpp",
+        "vector": "cpp"
     }
 }

@@ -31,7 +31,7 @@ vector<vector<long long>> multMatrix(const vector<vector<int>> &a, const vector<
     return result;
 }
 void diagonalSum(const vector<vector<int>> &a, int n){
-    long long first_sum, sec_sum =0;
+    long long first_sum=0, sec_sum =0;
     for (int i = 0; i < n; ++i){
         first_sum += a[i][i];
         sec_sum += a[i][n-1-i];
@@ -60,20 +60,21 @@ void swapCols(vector<vector<int>> &a, int C1, int C2, int n){
 }
 
 void updateValue(vector<vector<int>> &a, int row, int col, int value){
-    if(row < 0 || col < 0 || row >= a.size() || col >= a.size()){
-        cout << "Invalid indices!" << endl;
-        return;
+    if (row < 0 || col < 0 || row >= (int)a.size() || col >= (int)a[0].size()) {
+    cout << "Invalid indices!" << endl;
+    return;
     }
+
     a[row][col] = value;
 }
 
 
-
-void printMatrix(const auto& mtx, int n){
+template <typename T>
+void printMatrix(const vector<vector<T>>& mtx, int n){
 
     for (int i = 0; i < n; i++){
         for (int j = 0; j < n; j++){
-            printf("%02d ", mtx[i][j]);
+            printf("%0lld ", (long long)mtx[i][j]);
         }
         printf("\n");
     }
@@ -131,7 +132,7 @@ int main(){
         cout << "Select row to swap with: ";
         cin >> r2;
         if ((r1 <n && r1 >=0) && (r2 < n && r2>=0)){break;}
-        else{printf("Invalid Input, Please enter a number between 0 and %c\n", n);}
+        else{printf("Invalid Input, Please enter a number between 0 and %c\n", n-1);}
 
     }
 
@@ -150,7 +151,7 @@ int main(){
         cout << "Select column to swap with: ";
         cin >> c2;
         if ((c1 <n && c1 >=0) && (c2 < n && c2>=0)){break;}
-        else{printf("Invalid Input, Please enter a number between 0 and 3\n");}
+        else{printf("Invalid Input, Please enter a number between 0 and %c\n",n-1 );}
 
     }
 
@@ -159,7 +160,7 @@ int main(){
     int row_ind, col_ind, value;
 
 
-    printf("-Change an element in the matrix-");
+    printf("-Change an element in the matrix-\n");
     cout << "Enter the row index to change: ";
     cin >> row_ind;
     cout << "Enter the column index to change: ";
@@ -168,6 +169,8 @@ int main(){
     cin >> value;
 
     updateValue(matrix1, row_ind, col_ind, value);
+    printf("\n");
+    printf("Updated Matrix 1: \n");
     printMatrix(matrix1, n);
 
 
