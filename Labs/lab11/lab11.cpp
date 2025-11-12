@@ -2,7 +2,10 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <utility>
+#include <stdexcept>
 #include <string>
+
 
 using namespace std;
 
@@ -118,7 +121,7 @@ class Matrix{
             for (int i = 0; i < size; ++i){
                 for(int j = 0; j < size; ++j){
                     for(int k=0; k < size; ++k)
-                        out.matrix[i][j] += matrix[i][k] + other.matrix[k][j];
+                        out.matrix[i][j] += matrix[i][k] * other.matrix[k][j];
                 }
             }
             return out;
