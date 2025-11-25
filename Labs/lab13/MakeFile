@@ -1,0 +1,16 @@
+CC = g++
+CXXFLAGS = -std=c+11 -Wall
+
+TARGET = lab13
+SRC = la13.cpp
+
+all: $(TARGET)
+
+$(TARGET):$(SRC)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
+
+run: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm-f $(TARGET)

@@ -1,0 +1,19 @@
+1.  A fault is found in the for loop of the fail_lecture function
+    starting at i = 1 is a fault as it will skip over the first 
+    value in the vector
+
+2.  With an attendance record of  10 values, the fault will always
+    be executed as 1 < 10 so it will always execute. If you were to
+    use a case such as {1} the fault would not be executed as 1 < 1
+    would not run the loop
+
+3.  {1,1,1,1,1,1,1,1,1,1} executes the fault without leading to an error
+    in the code. Outputs: False/Pass Expected: False/Pass
+
+4.  {0,0,0,0,1,1,1,1,1,1} should result in True/Fail, as there are three 
+    absences. Returns the correct result, but resulrs in an error state as 
+    the true amount of absences is not recorded, 3 instead of 4.
+
+5.  {0,0,0,1,1,1,1,1,1,1} should result in True/Fail, however it resutls in
+    False/Pass as the first 0 is not counted. This means the code is in an error
+    state as well as resulting in a failure.
